@@ -20,16 +20,23 @@ app.set('view engine', 'ejs');
 app.get('/*', function(req, res) {
     // res.end('the first get router, catchall?');
     var urlObj = url.parse(req.url, true);
-    res.json(urlObj.query); // should send JSON.stringify-ed version of
-  						  // urlObj.query which should be in obj rather
-  						  // than str format. 
-    // next(); 
+    // console.log('dirname is: '+ __dirname); // root dir of where index.js
+    // launches from. i.e. Dir 'getting started with node'.
+
+    // BACK TO ORIGINAL
+    res.render(__dirname + '/views/pages/index'); // does it auto know .ejs? 
+
+    //  res.json(urlObj.query); // should send JSON.stringify-ed version of
+    // 					  // urlObj.query which should be in obj rather
+    // 					  // than str format. 
+    // // waiting for res.render('index') // and option objs. 
+    //  // next(); 
 });
 
 // app.get is strict with its mountPath. So if something gets
 // caught, it doesn't go to the next app.get.. 
 app.get('/cool', function(req, res) {
-	// console.log("the /cool app.get route"); 
+    // console.log("the /cool app.get route"); 
     res.send(coolfaces());
     // // INVESTIGATE BELOW!!!
     //    var x = coolfaces(); // it gives a string... 
